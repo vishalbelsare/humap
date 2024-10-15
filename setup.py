@@ -9,7 +9,7 @@ from pybind11 import get_cmake_dir
 
 import sys 
 
-__version__ = "0.2.7"
+__version__ = "0.2.9"
 
 with open('README.md', 'r') as f:
 	long_description = f.read()
@@ -22,8 +22,8 @@ if sys.platform == 'win32':
     	Pybind11Extension("_hierarchical_umap",
     		["src/cpp/external/efanna/index.cpp", "src/cpp/external/efanna/index_graph.cpp", "src/cpp/external/efanna/index_kdtree.cpp", "src/cpp/external/efanna/index_random.cpp", "src/cpp/utils.cpp", "src/cpp/umap.cpp", "src/cpp/hierarchical_umap.cpp", "src/cpp/humap_binding.cpp"],
     		language='c++',
-    		extra_compile_args = [ '/openmp', '/DEIGEN_DONT_PARALLELIZE',  '/DINFO', '-IC:/Eigen'],
-            extra_link_args = [ '/openmp', '/DEIGEN_DONT_PARALLELIZE', '/DINFO', '-IC:/Eigen'],
+    		extra_compile_args = [ '/openmp',  '/DINFO', '-IC:/Eigen'],
+            extra_link_args = [ '/openmp', '/DINFO', '-IC:/Eigen'],
     		define_macros = [('VERSION_INFO', __version__)],
     		),
 
@@ -34,8 +34,8 @@ elif sys.platform == 'darwin':
     Pybind11Extension("_hierarchical_umap",
         ["src/cpp/external/efanna/index.cpp", "src/cpp/external/efanna/index_graph.cpp", "src/cpp/external/efanna/index_kdtree.cpp", "src/cpp/external/efanna/index_random.cpp", "src/cpp/utils.cpp", "src/cpp/umap.cpp", "src/cpp/hierarchical_umap.cpp", "src/cpp/humap_binding.cpp"],
         language='c++',
-        extra_compile_args = ['-O3', '-std=c++11', '-fPIC', '-fopenmp', '-DEIGEN_DONT_PARALLELIZE', '-DINFO'],
-        extra_link_args = ['-O3', '-std=c++11', '-fPIC', '-fopenmp', '-DEIGEN_DONT_PARALLELIZE', '-DINFO'],
+        extra_compile_args = ['-O3', '-std=c++11', '-fPIC', '-fopenmp',  '-DINFO', '-I/usr/local/include'],
+        extra_link_args = ['-O3', '-std=c++11', '-fPIC', '-fopenmp', '-DINFO', '-I/usr/local/include'],
         define_macros = [('VERSION_INFO', __version__)],
         ),
 
@@ -46,8 +46,8 @@ else:
     Pybind11Extension("_hierarchical_umap",
         ["src/cpp/external/efanna/index.cpp", "src/cpp/external/efanna/index_graph.cpp", "src/cpp/external/efanna/index_kdtree.cpp", "src/cpp/external/efanna/index_random.cpp", "src/cpp/utils.cpp", "src/cpp/umap.cpp", "src/cpp/hierarchical_umap.cpp", "src/cpp/humap_binding.cpp"],
         language='c++',
-        extra_compile_args = ['-O3', '-shared', '-std=c++11', '-fPIC', '-fopenmp',  '-DEIGEN_DONT_PARALLELIZE', '-DINFO'],
-        extra_link_args = ['-O3', '-shared', '-std=c++11', '-fPIC', '-fopenmp',  '-DEIGEN_DONT_PARALLELIZE', '-DINFO'],
+        extra_compile_args = ['-O3', '-shared', '-std=c++11', '-fPIC', '-fopenmp', '-DINFO'],
+        extra_link_args = ['-O3', '-shared', '-std=c++11', '-fPIC', '-fopenmp', '-DINFO'],
         define_macros = [('VERSION_INFO', __version__)],
         ),
 
